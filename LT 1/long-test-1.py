@@ -103,7 +103,7 @@ with open('transaction-data-adhoc-analysis.json', 'r') as f:
     
 dataframe = pd.DataFrame(data)
 
-dataframe['transaction_date'] = pd.to_datetime(dataframe['transaction_date'], format="yyyy/mm/dd")
+dataframe['transaction_date'] = pd.to_datetime(dataframe['transaction_date'], format="%Y/mm/dd")
 
 customers_per_month = dataframe.groupby(['name',dataframe['transaction_date'].dt.month.rename('transaction_month')])['transaction_value'].sum().reset_index()
 
