@@ -103,7 +103,7 @@ with open('transaction-data-adhoc-analysis.json', 'r') as f:
     
 dataframe = pd.DataFrame(data)
 
-dataframe['transaction_date'] = pd.to_datetime(dataframe['transaction_date'], format="%Y/mm/dd")
+dataframe['transaction_date'] = pd.to_datetime(dataframe['transaction_date'], format="%Y/%m/%d")
 
 customers_per_month = dataframe.groupby(['name',dataframe['transaction_date'].dt.month.rename('transaction_month')])['transaction_value'].sum().reset_index()
 
@@ -119,7 +119,7 @@ repeaters_0405 = number[(number[4]>0)&(number[5]>0)][5].count()
 repeaters_0506 = number[(number[5]>0)&(number[6]>0)][6].count()
 
 inactive_01 = 0
-inactive_02 = number[(number[1]==0)&(number[2]>0)][2].count()
+inactive_02 = number[(number[2]==0)&(number[1]>0)][2].count()
 inactive_03 = number[(number[3]==0)&((number[1]>0)|(number[2]>0))][3].count()
 inactive_04 = number[(number[4]==0)&((number[1]>0)|(number[2]>0)|(number[3]>0))][4].count()
 inactive_05 = number[(number[5]==0)&((number[1]>0)|(number[2]>0)|(number[3]>0)|(number[4]>0))][5].count()
